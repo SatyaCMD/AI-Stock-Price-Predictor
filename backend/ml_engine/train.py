@@ -72,3 +72,39 @@ def train_predict_lstm(ticker: str, period="5y"):
     pred_price = scaler.inverse_transform(pred_price)
     
     return pred_price[0][0]
+
+def train_predict_logistic_regression(ticker: str, period="2y"):
+    """
+    Train Logistic Regression to predict if price will go UP (1) or DOWN (0).
+    """
+    # Fetch data
+    data_dict = data_service.fetch_stock_data(ticker, period=period)
+    if "error" in data_dict:
+        return None
+        
+    df = pd.DataFrame(data_dict["history"])
+    if df.empty:
+        return None
+        
+    df = preprocessing.preprocess_data(df)
+    if df.empty:
+        return None
+        
+    # Feature Engineering for Classification
+    df['Target'] = np.where(df['Close'].shift(-1) > df['Close'], 1, 0)
+    
+    # Use simple features: Open, High, Low, Close, Volume
+    features = ['Open', 'High', 'Low', 'Close', 'Volume']
+    X = df[features].values[:-1] # Drop last row as it has no target
+    y = df['Target'].values[:-1]
+    
+    if len(X) < 10: # Not enough data
+        return None
+        
+    model = models.train_logistic_regression(X, y)
+    
+    # Predict for next day using latest data
+    latest_data = df[features].values[-1].reshape(1, -1)
+    prediction = model.predict(latest_data)
+    
+    return int(prediction[0]) # 1 for Up, 0 for Down

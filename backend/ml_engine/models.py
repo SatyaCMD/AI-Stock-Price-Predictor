@@ -1,4 +1,4 @@
-from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LinearRegression, LogisticRegression
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, LSTM
 
@@ -7,6 +7,14 @@ def train_linear_regression(x_train, y_train):
     Train a Linear Regression model.
     """
     model = LinearRegression()
+    model.fit(x_train, y_train)
+    return model
+
+def train_logistic_regression(x_train, y_train):
+    """
+    Train a Logistic Regression model.
+    """
+    model = LogisticRegression()
     model.fit(x_train, y_train)
     return model
 
