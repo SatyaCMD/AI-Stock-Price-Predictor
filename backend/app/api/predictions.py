@@ -10,5 +10,5 @@ def predict_stock_price(ticker: str):
     """
     predictions = ml_service.get_predictions(ticker)
     if not predictions["linear_regression_prediction"] and not predictions["lstm_prediction"]:
-        raise HTTPException(status_code=500, detail="Failed to generate predictions")
+        raise HTTPException(status_code=404, detail="Could not generate predictions (likely insufficient data)")
     return predictions

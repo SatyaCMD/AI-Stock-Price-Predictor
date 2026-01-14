@@ -19,7 +19,12 @@ def train_predict_linear_regression(ticker: str, period="2y"):
         return None
     
     df = pd.DataFrame(data_dict["history"])
+    if df.empty:
+        return None
+        
     df = preprocessing.preprocess_data(df)
+    if df.empty:
+        return None
     
     # Prepare features for LR (using Days as feature)
     df['Days'] = (df.index - df.index[0]).days
@@ -45,6 +50,8 @@ def train_predict_lstm(ticker: str, period="5y"):
         return None
         
     df = pd.DataFrame(data_dict["history"])
+    if df.empty:
+        return None
     
     # Preprocess
     x_train, y_train, scaler = preprocessing.prepare_lstm_data(df)
