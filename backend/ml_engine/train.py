@@ -48,8 +48,11 @@ def train_predict_linear_regression(ticker: str, period="2y"):
     
     # Evaluate
     y_pred_test = model.predict(X_test)
-    r2 = r2_score(y_test, y_pred_test)
-    confidence = max(0, min(98, r2 * 100)) # Clip between 0 and 98
+    mae = mean_absolute_error(y_test, y_pred_test)
+    mean_price = np.mean(y_test)
+    # Heuristic confidence: 100 - (MAE / Mean Price * 100)
+    # If error is 1% of price, confidence is 99%
+    confidence = max(0, min(98, (1 - (mae / mean_price)) * 100))
     
     # Retrain on full data for final prediction
     model_full = models.train_linear_regression(X, y)

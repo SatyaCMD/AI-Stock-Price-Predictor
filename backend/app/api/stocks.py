@@ -14,8 +14,8 @@ def get_stock_details(ticker: str, period: str = "1y", interval: str = "1d"):
     return data
 
 @router.get("/search")
-def search_stocks(q: str = Query(..., min_length=1)):
+def search_stocks(q: str = Query(..., min_length=1), region: str = Query(None), asset_type: str = Query(None)):
     """
     Search for stocks by ticker or name.
     """
-    return data_service.search_symbol(q)
+    return data_service.search_symbol(q, region, asset_type)
