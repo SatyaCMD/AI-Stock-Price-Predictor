@@ -66,6 +66,7 @@ def fetch_stock_data(ticker: str, period: str = "1y", interval: str = "1d") -> D
                 "debtToEquity": info.get("debtToEquity"),
                 "totalCash": info.get("totalCash"),
                 "totalDebt": info.get("totalDebt"),
+                "marketState": info.get("marketState"),
             },
             "history": data
         }
