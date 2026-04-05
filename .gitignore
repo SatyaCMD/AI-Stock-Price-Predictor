@@ -1,12 +1,46 @@
+# ----------------------
 # Python
+# ----------------------
 __pycache__/
-*.pyc
+*.py[cod]
+*.pyo
+*.pyd
 .env
 venv/
+env/
 
-# Node
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# ----------------------
+# Node / Frontend
+# ----------------------
 node_modules/
 frontend/.git
 
-# OS
+# Build files
+dist/
+build/
+
+# ----------------------
+# IDE / Editor
+# ----------------------
+.vscode/
+.idea/
+
+# ----------------------
+# OS files
+# ----------------------
 .DS_Store
+Thumbs.db
+
+# ----------------------
+# Logs
+# ----------------------
+*.log
+
+# ----------------------
+# Database
+# ----------------------
+*.sqlite3
+*.db
