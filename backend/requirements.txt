@@ -4,7 +4,7 @@ yfinance
 pandas
 numpy
 scikit-learn
-tensorflow
+tensorflow-cpu==2.13.0
 sqlalchemy
 python-multipart
 requests
@@ -13,3 +13,5 @@ jinja2
 python-dotenv
 google-genai
 motor
+passlib[bcrypt]
+python-jose
