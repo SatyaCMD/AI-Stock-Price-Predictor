@@ -183,44 +183,52 @@ export default function Navbar() {
                         {/* Desktop Menu */}
                         <div className="hidden md:block">
                             <div className="ml-10 flex items-baseline space-x-8">
-                                <Link
-                                    href="/"
-                                    className={`px-3 py-2 rounded-md text-sm font-medium transition-all ${pathname === '/'
-                                        ? 'text-gray-900 border-b-2 border-blue-600'
-                                        : 'text-gray-500 hover:text-blue-600 hover:bg-blue-50'
-                                        }`}
-                                >
-                                    Dashboard
-                                </Link>
-                                <Link
-                                    href="/markets"
-                                    className={`px-3 py-2 rounded-md text-sm font-medium transition-all ${pathname === '/markets'
-                                        ? 'text-gray-900 border-b-2 border-blue-600'
-                                        : 'text-gray-500 hover:text-blue-600 hover:bg-blue-50'
-                                        }`}
-                                >
-                                    Markets
-                                </Link>
-                                <Link
-                                    href="/portfolio"
-                                    className={`px-3 py-2 rounded-md text-sm font-medium transition-all ${pathname === '/portfolio'
-                                        ? 'text-gray-900 border-b-2 border-blue-600'
-                                        : 'text-gray-500 hover:text-blue-600 hover:bg-blue-50'
-                                        }`}
-                                >
-                                    Portfolio
-                                </Link>
-                                <Link
-                                    href="/learn"
-                                    className={`px-3 py-2 rounded-md text-sm font-medium transition-all ${pathname === '/learn'
-                                        ? 'text-gray-900 border-b-2 border-blue-600'
-                                        : 'text-gray-500 hover:text-blue-600 hover:bg-blue-50'
-                                        }`}
-                                >
-                                    Learn
-                                </Link>
+                                {isLoggedIn && (
+                                    <Link
+                                        href="/"
+                                        className={`px-3 py-2 rounded-md text-sm font-medium transition-all ${pathname === '/'
+                                            ? 'text-gray-900 border-b-2 border-blue-600'
+                                            : 'text-gray-500 hover:text-blue-600 hover:bg-blue-50'
+                                            }`}
+                                    >
+                                        Dashboard
+                                    </Link>
+                                )}
+                                    {isLoggedIn && (
+                                        <Link
+                                            href="/markets"
+                                            className={`px-3 py-2 rounded-md text-sm font-medium transition-all ${pathname === '/markets'
+                                                ? 'text-gray-900 border-b-2 border-blue-600'
+                                                : 'text-gray-500 hover:text-blue-600 hover:bg-blue-50'
+                                                }`}
+                                        >
+                                            Markets
+                                        </Link>
+                                      )}
+                                          {isLoggedIn && (
+                                            <Link
+                                                href="/portfolio"
+                                                className={`px-3 py-2 rounded-md text-sm font-medium transition-all ${pathname === '/portfolio'
+                                                    ? 'text-gray-900 border-b-2 border-blue-600'
+                                                    : 'text-gray-500 hover:text-blue-600 hover:bg-blue-50'
+                                                    }`}
+                                            >
+                                                Portfolio
+                                            </Link>
+                                      )}
+                                          {isLoggedIn && (
+                                            <Link
+                                                href="/learn"
+                                                className={`px-3 py-2 rounded-md text-sm font-medium transition-all ${pathname === '/learn'
+                                                    ? 'text-gray-900 border-b-2 border-blue-600'
+                                                    : 'text-gray-500 hover:text-blue-600 hover:bg-blue-50'
+                                                    }`}
+                                            >
+                                                Learn
+                                            </Link>
+                                      )}
+                                </div>
                             </div>
-                        </div>
 
                         {/* Right Side Actions */}
                         <div className="hidden md:flex items-center space-x-4">
@@ -348,6 +356,7 @@ export default function Navbar() {
                     isOpen && (
                         <div className="md:hidden bg-white border-b border-gray-200 animate-in slide-in-from-top-5">
                             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                                {isLoggedIn && (
                                 <Link
                                     href="/"
                                     className={`block px-3 py-2 rounded-md text-base font-medium ${pathname === '/'
@@ -357,6 +366,8 @@ export default function Navbar() {
                                 >
                                     Dashboard
                                 </Link>
+                                )}
+                                {isLoggedIn && (
                                 <Link
                                     href="/markets"
                                     className={`block px-3 py-2 rounded-md text-base font-medium ${pathname === '/markets'
@@ -366,6 +377,8 @@ export default function Navbar() {
                                 >
                                     Markets
                                 </Link>
+                                )}
+                                {isLoggedIn && (
                                 <Link
                                     href="/portfolio"
                                     className={`block px-3 py-2 rounded-md text-base font-medium ${pathname === '/portfolio'
@@ -375,6 +388,8 @@ export default function Navbar() {
                                 >
                                     Portfolio
                                 </Link>
+                                )}
+                                {isLoggedIn && (
                                 <Link
                                     href="/learn"
                                     className={`block px-3 py-2 rounded-md text-base font-medium ${pathname === '/learn'
@@ -384,6 +399,7 @@ export default function Navbar() {
                                 >
                                     Learn
                                 </Link>
+                                )}
                                 {walletAddress ? (
                                     <div className="mt-4 space-y-2">
                                         <button
