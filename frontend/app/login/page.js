@@ -50,7 +50,7 @@ export default function LoginPage() {
         }
 
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/v1/auth/login', {
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/login`, {
                 email: formData.email,
                 password: formData.password
             });
