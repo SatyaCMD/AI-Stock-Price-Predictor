@@ -66,15 +66,6 @@ export default function SignupPage() {
                     password: formData.password
                 }
             );
-        
-            console.log("Signup successful:", response.data);
-        
-        } catch (err) {
-            setError(
-                err.response?.data?.detail ||
-                "Signup failed. Please try again."
-            );
-        }
 
             // Save authoritative response token & metadata from MongoDB
             localStorage.setItem('token', response.data.access_token);
