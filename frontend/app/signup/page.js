@@ -59,12 +59,22 @@ export default function SignupPage() {
 
         try {
             const response = await axios.post(
-                `${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/signup`, 
-            {
-                name: formData.name,
-                email: formData.email,
-                password: formData.password
-            });
+                `${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/signup`,
+                {
+                    name: formData.name,
+                    email: formData.email,
+                    password: formData.password
+                }
+            );
+        
+            console.log("Signup successful:", response.data);
+        
+        } catch (err) {
+            setError(
+                err.response?.data?.detail ||
+                "Signup failed. Please try again."
+            );
+        }
 
             // Save authoritative response token & metadata from MongoDB
             localStorage.setItem('token', response.data.access_token);
